@@ -31,7 +31,40 @@ void gen(int arr[], int n, int r, int k ){
 }
 
 
+/* iterative solution for the combination algorithm
+ */
+
+void iter_combination(int n, int r){
+    int arr[r];
+    for(int i = 0;i < r; i++){
+        arr[i] = i+1;
+    }
+    arr[r-1]--; 
+
+    while(1){
+        int flag = 1; 
+
+        for(int j = r-1; j >= 0; j--){
+            if(arr[j] <= n-r+j)
+            {
+                flag = 0;
+                arr[j]++;
+                for(int k =j+1; k < r; k++)
+                    arr[k] = arr[k-1] + 1;
+                break;
+            }
+        }
+        for(int i = 0; i < r; i++)
+            printf("%d ", arr[i]);
+        printf("\n");
+
+        if(flag) break;
+    }
+}
+
+
 int main(void){
-    combination(5, 3);
-    combination(8, 5);
+    /* combination(5, 3); */
+    /* combination(8, 5); */
+    iter_combination(5, 3);
 }
